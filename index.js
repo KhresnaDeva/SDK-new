@@ -4,7 +4,7 @@ function formEncodeLowerCaseKey (payload) {
         return `${encodeURIComponent(key.toLowerCase())}=${encodeURIComponent(value)}`
     })
     .join("&");
-    //console.log("OBJ ", obj);
+    console.log("OBJ ", obj);
     return obj;
 }
 
