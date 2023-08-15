@@ -52,7 +52,7 @@ exports.iam = {
 
         const response = await fetch(`${this.IAM_SERVER}/oauth/token`, {
             method: 'POST',
-            data: formEncodeLowerCaseKey(payload),
+            body: formEncodeLowerCaseKey(payload),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
@@ -60,6 +60,11 @@ exports.iam = {
 
         const data = response.json()
         return data
+    },
+    logoutURL: () => {
+        let logout_url = `${IAM_SERVER}/signout?client_id=${encodeURIComponent(this.CLIENT_ID)}`
+        console.log('logout url = ' + logout_url)
+        return logout_url
     }
 
 }
