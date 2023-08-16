@@ -9,7 +9,7 @@ function formEncodeLowerCaseKey (payload) {
 }
 
 exports.iam = {
-    IAM_SERVER: '',
+    IAM_SERVER: 'https://api-oss.domain-dev.site',
     CLIENT_ID: '',
     CLIENT_SECRET: '',
     REDIRECT_URI: '',
@@ -41,7 +41,7 @@ exports.iam = {
         console.log('redirect url =' + redirect_url)
         return redirect_url
     },
-    getAccessToken: async function(authCode = '') {
+    getAccessToken: async (authCode = '') => {
         let payload = {
             code: authCode,
             grant_type: "authorization_code",
@@ -49,6 +49,8 @@ exports.iam = {
             CLIENT_SECRET: this.CLIENT_SECRET,
             REDIRECT_URI: this.REDIRECT_URI,
         }
+        console.log('payload:')
+        console.log(payload)
         console.log(this.IAM_SERVER)
         let accessURL = `${this.IAM_SERVER}/oauth/token`
         console.log(accessURL)
