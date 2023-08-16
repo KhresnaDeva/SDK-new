@@ -49,20 +49,23 @@ exports.iam = {
             CLIENT_SECRET: this.CLIENT_SECRET,
             REDIRECT_URI: this.REDIRECT_URI,
         }
-
-        const response = await fetch(`${this.IAM_SERVER}/oauth/token`, {
+        console.log(this.IAM_SERVER)
+        let accessURL = `${this.IAM_SERVER}/oauth/token`
+        console.log(accessURL)
+        const response = await fetch(accessURL, {
             method: 'POST',
             body: formEncodeLowerCaseKey(payload),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         })
-
+        console.log(response)
         const data = response.json()
+        console.log(data)
         return data
     },
     logoutURL: () => {
-        let logout_url = `${IAM_SERVER}/signout?client_id=${encodeURIComponent(this.CLIENT_ID)}`
+        let logout_url = `${this.IAM_SERVER}/signout?client_id=${encodeURIComponent(this.CLIENT_ID)}`
         console.log('logout url = ' + logout_url)
         return logout_url
     }
